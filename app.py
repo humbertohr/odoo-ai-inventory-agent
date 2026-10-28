@@ -735,22 +735,23 @@ if st.button(
 ):
     import os
 
-api_key = os.getenv("ANTHROPIC_API_KEY")
 
-if not api_key:
-    try:
-        api_key = st.secrets["ANTHROPIC_API_KEY"]
-    except (KeyError, FileNotFoundError):
-        api_key = None
+    api_key = os.getenv("ANTHROPIC_API_KEY")
 
-if not api_key:
-    st.error(
-        "ANTHROPIC_API_KEY is unavailable. "
-        "Configure the environment variable or Streamlit Secrets."
-    )
+    if not api_key:
+        try:
+            api_key = st.secrets["ANTHROPIC_API_KEY"]
+        except (KeyError, FileNotFoundError):
+            api_key = None
 
+    if not api_key:
+        st.error(
+            "ANTHROPIC_API_KEY is unavailable. "
+            "Configure the environment variable or Streamlit Secrets."
+        )
     else:
         risk_fields = [
+
             "product_id",
             "warehouse",
             "on_hand_inventory",
