@@ -1,0 +1,26 @@
+# Python environment and cache
+.venv/
+__pycache__/
+*.py[cod]
+
+# Secrets
+.env
+.streamlit/secrets.toml
+
+# Local reports and temporary files
+reports/
+app_predeploy_backup.py
+app_backup.py
+test_*.py
+read_inventory_case.py
+investigate_inventory.py
+run_inventory_investigation.py
+check_data.py
+
+# Editor and operating-system files
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Confidential company inventory data
+data/
