@@ -735,11 +735,20 @@ if st.button(
 ):
     import os
 
-    if not os.getenv("ANTHROPIC_API_KEY"):
-        st.error(
-            "ANTHROPIC_API_KEY is unavailable. "
-            "Restart the terminal or configure the environment variable."
-        )
+api_key = os.getenv("ANTHROPIC_API_KEY")
+
+if not api_key:
+    try:
+        api_key = st.secrets["ANTHROPIC_API_KEY"]
+    except (KeyError, FileNotFoundError):
+        api_key = None
+
+if not api_key:
+    st.error(
+        "ANTHROPIC_API_KEY is unavailable. "
+        "Configure the environment variable or Streamlit Secrets."
+    )
+
     else:
         risk_fields = [
             "product_id",
